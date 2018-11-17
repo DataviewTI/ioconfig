@@ -15,7 +15,7 @@ php artisan io-config:install
 - Configure o webpack conforme abaixo 
 ```js
 ...
-let slide = require('io-config');
+let config = require('io-config');
 io.compile({
   services:{
     ...
