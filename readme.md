@@ -17,11 +17,11 @@ php artisan io-config:install
 ...
 let config = require('io-config');
 io.compile({
-  services:{
+  services:[
     ...
-    new config()
+    new config(),
     ...
-  }
+  ]
 });
 
 ```
