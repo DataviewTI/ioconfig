@@ -11,7 +11,7 @@ class ConfigSeeder extends Seeder
     public function run(){
       $serv = 'Config';
 
-      if(!Service::where(strtolower($serv),$serv)->exists()){
+      if(!Service::where('alias',strtolower($serv))->exists()){
         Service::insert([
             'service' => $serv,
             'alias' =>$serv,
