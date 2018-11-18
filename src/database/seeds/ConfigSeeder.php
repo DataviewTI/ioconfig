@@ -14,7 +14,7 @@ class ConfigSeeder extends Seeder
       if(!Service::where('alias',strtolower($serv))->exists()){
         Service::insert([
             'service' => $serv,
-            'alias' =>$serv,
+            'alias' => strtolower($serv),
             'ico' => 'ico-gears',
             'description' => "Configurações da IO",
             'order' => Service::max('order')+1
