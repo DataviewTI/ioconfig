@@ -11,10 +11,16 @@ class CreateConfigsTable extends Migration
 			Schema::create('configs', function(Blueprint $table)
 			{
 				$table->increments('id');
-				$table->string('name');
+				$table->char('name',20);
+        $table->integer('user_id')->unsigned()->nullable();
+        $table->integer('service_id')->unsigned()->nullable();
         $table->integer('group_id')->unsigned()->nullable();
+				$table->string('description')->nullable();
+				$table->text('configuration');
         $table->timestamps();
 				$table->softDeletes();
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
         $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade')->onUpdate('cascade');
 			});
     }

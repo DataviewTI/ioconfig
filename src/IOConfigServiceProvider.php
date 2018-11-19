@@ -26,5 +26,6 @@ class IOConfigServiceProvider extends ServiceProvider
   
     $this->app->make('Dataview\IOConfig\ConfigController');
     $this->app->make('Dataview\IOConfig\ConfigRequest');
+    $this->app->make('Dataview\IOConfig\UserConfigRequest');
   }
 }

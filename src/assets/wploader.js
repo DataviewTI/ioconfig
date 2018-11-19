@@ -48,6 +48,8 @@ function IOConfig(params={}){
     ], IO.dest.io.root + 'services/io-config-babel.min.js');
     
     mix.scripts([
+      IO.dep.jquery_mask+'jquery.mask.min.js',
+      IO.src.js + 'extensions/ext-jquery.mask.js',
       $.dep.moment + 'min/moment.min.js',
       IO.src.io.vendors + 'moment/moment-pt-br.js',
       $.dep.cropper + 'cropper.js',
@@ -56,7 +58,9 @@ function IOConfig(params={}){
     ], IO.dest.io.root + 'services/io-config-mix.min.js');
 
     //copy separated for compatibility
-    mix.babel($.dep.config + 'config.js', IO.dest.io.root + 'services/io-config.min.js');
+    mix.babel($.dep.config + 'odin-config.js', IO.dest.io.root + 'services/io-odin-config.min.js');
+    mix.babel($.dep.config + 'admin-config.js', IO.dest.io.root + 'services/io-admin-config.min.js');
+    mix.babel($.dep.config + 'user-config.js', IO.dest.io.root + 'services/io-user-config.min.js');
 
     callback(IO);
   }
