@@ -57,7 +57,7 @@
       $__tabs[] = [
         "tab"=>"Configurações de Administrador",
         "icon"=>"ico ico-gears",
-        "view"=>"Config::form"
+        "view"=>"Config::admin.form"
       ];
     }
 
