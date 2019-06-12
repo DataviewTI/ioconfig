@@ -134,10 +134,14 @@ new IOService({
                           }
                         })
                       else{
+                        delete $.ajaxSettings.headers["X-CSRF-Token"];
+                        
                         $.ajax({
                           headers: {
                               'Content-Type':'application/json',
-                              'X-CSRF-Token': laravel_token,
+                          },
+                          complete: jqXHR => {
+                              $.ajaxSettings.headers["X-CSRF-Token"] = laravel_token;
                           },
                           url:`https://viacep.com.br/ws/${$('#odin-zipCode').cleanVal()}/json`,
                           success:(data)=>{
