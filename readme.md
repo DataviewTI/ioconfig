@@ -1,5 +1,5 @@
 
-# Configurações gerias de de usuário da IntranetOne
+# Configurações gerais de de usuário da IntranetOne
 Serviço que permite configurar os dados gerais da instalação, chaves e dados de redes sociais e configuração visual geral e por usuário
 ## Conteúdo
  
@@ -10,6 +10,12 @@ composer require dataview/ioconfig
 ```
 ```sh
 php artisan io-config:install
+```
+
+Carregar as configurações
+
+```sh
+php artisan config:cache
 ```
 
 - Configure o webpack conforme abaixo 
