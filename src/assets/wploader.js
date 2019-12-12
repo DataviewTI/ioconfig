@@ -16,10 +16,10 @@ function IOConfig(params = {}) {
     optimize: false,
     sass: false,
     fe: true,
-    cb: () => {}
+    cb: () => { }
   };
 
-  this.compile = (IO, callback = () => {}) => {
+  this.compile = (IO, callback = () => { }) => {
     //move minicolors.png
     mix.copy(
       $.dep.minicolors + 'jquery.minicolors.png',
@@ -32,7 +32,7 @@ function IOConfig(params = {}) {
         IO.src.io.css + 'dropzone.css',
         IO.src.io.css + 'dropzone-preview-template.css',
         IO.src.io.vendors +
-          'aanjulena-bs-toggle-switch/aanjulena-bs-toggle-switch.css',
+        'aanjulena-bs-toggle-switch/aanjulena-bs-toggle-switch.css',
         IO.src.io.css + 'sortable.css',
         IO.dep.io.toastr + 'toastr.min.css',
         IO.src.io.css + 'toastr.css',
@@ -43,12 +43,12 @@ function IOConfig(params = {}) {
       ],
       IO.dest.io.root + 'services/io-config.min.css'
     );
-
+    console.log('aa')
     mix.babel(
       [
         IO.src.js + 'extensions/ext-jquery.js',
         IO.src.io.vendors +
-          'aanjulena-bs-toggle-switch/aanjulena-bs-toggle-switch.js',
+        'aanjulena-bs-toggle-switch/aanjulena-bs-toggle-switch.js',
         IO.dep.io.toastr + 'toastr.min.js',
         IO.src.io.js + 'defaults/def-toastr.js',
         $.dep.dropzone + 'dropzone.js',

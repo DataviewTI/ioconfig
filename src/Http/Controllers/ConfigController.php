@@ -101,7 +101,7 @@ class ConfigController extends IOController{
 
       $_new = (object) $request->all();
       $_old = Config::find($id);
-      
+
       $upd = ['configuration'];
 
       foreach($upd as $u)
@@ -125,7 +125,10 @@ class ConfigController extends IOController{
 		
       $_old->save();
 
-      Artisan::call('config:cache');        
+      // Artisan::call('config:cache');
+      define("STDOUT", fopen('log.txt', 'w'));
+      Artisan::call('config:cache');
+
 			return response()->json(['success'=>$_old->save()]);
 	}
 

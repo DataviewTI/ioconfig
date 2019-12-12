@@ -166,8 +166,6 @@ function viewConfUser(self) {
       if (data.colors !== undefined)
         $('#user-mainColor').minicolors('value', data.colors.mainColor);
     },
-    onError: function(self) {
-      console.log('executa algo no erro do callback');
-    }
+    onError: function(self) {}
   };
 }

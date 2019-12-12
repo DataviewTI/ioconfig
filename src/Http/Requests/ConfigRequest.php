@@ -17,7 +17,7 @@ class ConfigRequest extends IORequest
         $input['configuration'] = isset($input['odin-__configuration']) ? $input['odin-__configuration'] : null;
         break;
       case 'admin':
-        $input['configuration'] = isset($input['admin-__configuration']) ? $input['admin__configuration'] : null;
+        $input['configuration'] = isset($input['admin-__configuration']) ? $input['admin-__configuration'] : null;
         break;
       case 'user':
         $input['user_id'] = isset($input['user_id']) ? $input['user_id'] : null;

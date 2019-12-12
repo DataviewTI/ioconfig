@@ -393,9 +393,7 @@ function view(self) {
             $('#admin-mainColor').minicolors('value', data.colors.mainColor);
       } catch (err) {}
     }, //sasas
-    onError: function(self) {
-      console.log('executa algo no erro do callback');
-    }
+    onError: function(self) {}
   };
 }
 
