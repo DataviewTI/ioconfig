@@ -22,6 +22,7 @@ class ConfigSeeder extends Seeder
         Service::insert([
             'service' => $serv,
             'alias' =>str_slug($serv),
+            'trans' => 'Configurações',
             'ico' => 'ico-gears',
             'description' => "Configurações da IO",
             'order' => Service::max('order')+1
