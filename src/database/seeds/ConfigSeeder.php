@@ -9,6 +9,7 @@ use Faker\Factory as Factory;
 
 use Sentinel;
 use Dataview\IOConfig\Config;
+use Illuminate\Support\Str;
 
 
 class ConfigSeeder extends Seeder
@@ -21,7 +22,7 @@ class ConfigSeeder extends Seeder
       if(!Service::where('service',$serv)->exists()){
         Service::insert([
             'service' => $serv,
-            'alias' =>str_slug($serv),
+            'alias' =>Str::slug($serv),
             'trans' => 'Configurações',
             'ico' => 'ico-gears',
             'description' => "Configurações da IO",
