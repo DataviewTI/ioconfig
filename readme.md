@@ -2,11 +2,9 @@
 
 Serviço que permite configurar os dados gerais da instalação, chaves e dados de redes sociais e configuração visual geral e por usuário
 
-## Conteúdo
-
 ## Instalação
 
-### Composer installation
+#### Composer installation
 
 Laravel 7 or above, PHP >= 7.2.5
 
@@ -20,13 +18,13 @@ laravel 5.6 or below, PHP >= 7 and < 7.2.5
 composer require dataview/ioconfig 1.0.0
 ```
 
-### Laravel artisan installation
+#### Laravel artisan installation
 
 ```sh
 php artisan io-config:install
 ```
 
-Carregar as configurações
+- Carregar as configurações
 
 ```sh
 php artisan config:cache
