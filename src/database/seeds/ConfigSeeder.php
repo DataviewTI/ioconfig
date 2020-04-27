@@ -89,7 +89,8 @@ class ConfigSeeder extends Seeder
         $_conf->save();
 
         $tmp_name = tempnam(sys_get_temp_dir(),'dz');
-        file_put_contents($tmp_name, file_get_contents($faker->imageUrl(270,80)));
+        // file_put_contents($tmp_name, file_get_contents($faker->imageUrl(270,80)));
+        file_put_contents($tmp_name, file_get_contents("http://placekitten.com/270/80"));
 
         $_conf->group->manageImages([[
           "name"=>$faker->bothify('default_#?#?#?#?.jpg'),
