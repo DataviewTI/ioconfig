@@ -2,14 +2,14 @@ new IOService(
   {
     name: "Config",
     dfId: "admin-default-form",
-    wz: $("#admin-default-wizard").wizard()
+    wz: $("#admin-default-wizard").wizard(),
   },
   function(self) {
     self.toView = self.config.default;
     $("#admin-cpf_cnpj").mask($.jMaskGlobals.CPFCNPJMaskBehavior, {
       onKeyPress: function(val, e, field, options) {
         var args = Array.from(arguments);
-        args.push(iscpf => {
+        args.push((iscpf) => {
           if (self.fv !== null) {
             if (iscpf) {
               self.fv[0]
@@ -26,7 +26,7 @@ new IOService(
         });
         field.mask($.jMaskGlobals.CPFCNPJMaskBehavior.apply({}, args), options);
       },
-      onComplete: function(val, e, field) {}
+      onComplete: function(val, e, field) {},
     });
 
     $("#admin-phone, #admin-mobile").mask($.jMaskGlobals.SPMaskBehavior, {
@@ -42,7 +42,7 @@ new IOService(
           .find("input")
           .first()
           .focus();
-      }
+      },
     });
 
     $("#admin-mainColor").minicolors({
@@ -55,7 +55,7 @@ new IOService(
         //hover uses currentColor
         $(".app-heading").css({ "background-color": value });
         $(".dash-menu li a").css({ color: value });
-      }
+      },
     });
 
     $("#admin-zipCode").mask("00000-000");
@@ -69,64 +69,64 @@ new IOService(
           "admin-name": {
             validators: {
               notEmpty: {
-                message: "O nome/título da entidade é obrigatório!"
-              }
-            }
+                message: "O nome/título da entidade é obrigatório!",
+              },
+            },
           },
           "admin-cpf_cnpj": {
             validators: {
               notEmpty: {
-                message: "O cpf/cnpj é obrigatório"
+                message: "O cpf/cnpj é obrigatório",
               },
               vat: {
                 enabled: false,
                 country: "BR",
-                message: "cnpj inválido"
+                message: "cnpj inválido",
               },
               id: {
                 country: "BR",
-                message: "cpf inválido"
-              }
-            }
+                message: "cpf inválido",
+              },
+            },
           },
           "admin-phone": {
             validators: {
               phone: {
                 country: "BR",
-                message: "Telefone Inválido"
-              }
-            }
+                message: "Telefone Inválido",
+              },
+            },
           },
           "admin-mobile": {
             validators: {
               phone: {
                 country: "BR",
-                message: "Mobile Inválido"
-              }
-            }
+                message: "Mobile Inválido",
+              },
+            },
           },
           "admin-email": {
             validators: {
               notEmpty: {
-                message: "O email principal é obrigatório"
+                message: "O email principal é obrigatório",
               },
               emailAddress: {
-                message: "email Inválido"
-              }
-            }
+                message: "email Inválido",
+              },
+            },
           },
           "admin-pathStorage": {
             validators: {
               notEmpty: {
-                message: "informe o pathStorage"
-              }
-            }
+                message: "informe o pathStorage",
+              },
+            },
           },
           "admin-zipCode": {
             validators: {
               promise: {
                 notEmpty: {
-                  message: "The avatar is required"
+                  message: "The avatar is required",
                 },
                 enabled: true,
                 promise: function(input) {
@@ -136,17 +136,17 @@ new IOService(
                         valid: false,
                         message: "Cep Inválido!",
                         meta: {
-                          data: null
-                        }
+                          data: null,
+                        },
                       });
                     else {
                       delete $.ajaxSettings.headers["X-CSRF-Token"];
 
                       $.ajax({
                         headers: {
-                          "Content-Type": "application/json"
+                          "Content-Type": "application/json",
                         },
-                        complete: jqXHR => {
+                        complete: (jqXHR) => {
                           $.ajaxSettings.headers[
                             "X-CSRF-Token"
                           ] = laravel_token;
@@ -154,43 +154,43 @@ new IOService(
                         url: `https://viacep.com.br/ws/${$(
                           "#admin-zipCode"
                         ).cleanVal()}/json`,
-                        success: data => {
+                        success: (data) => {
                           if (data.erro == true) {
                             resolve({
                               valid: false,
                               message: "Cep não encontrado!",
                               meta: {
-                                data: null
-                              }
+                                data: null,
+                              },
                             });
                           } else
                             resolve({
                               valid: true,
                               meta: {
-                                data
-                              }
+                                data,
+                              },
                             });
-                        }
+                        },
                       });
                     }
                   });
-                }
-              }
-            }
+                },
+              },
+            },
           },
           "admin-address": {
             validators: {
               notEmpty: {
-                message: "O endereço é obrigatório"
-              }
-            }
+                message: "O endereço é obrigatório",
+              },
+            },
           },
           "admin-address2": {
             validators: {
               notEmpty: {
-                message: "O bairro é obrigatório"
-              }
-            }
+                message: "O bairro é obrigatório",
+              },
+            },
           },
           has_images: {
             validators: {
@@ -203,10 +203,10 @@ new IOService(
                   }
                   $("#has_images").val(true);
                   return true;
-                }
-              }
-            }
-          }
+                },
+              },
+            },
+          },
         },
         plugins: {
           trigger: new FormValidation.plugins.Trigger(),
@@ -215,9 +215,9 @@ new IOService(
           icon: new FormValidation.plugins.Icon({
             valid: "fv-ico ico-check",
             invalid: "fv-ico ico-close",
-            validating: "fv-ico ico-gear ico-spin"
-          })
-        }
+            validating: "fv-ico ico-gear ico-spin",
+          }),
+        },
       }
     )
       .setLocale("pt_BR", FormValidation.locales.pt_BR)
@@ -241,16 +241,16 @@ new IOService(
       mainImage: false,
       copy_params: {
         original: true,
-        sizes: {}
+        sizes: {},
       },
       crop: {
-        ready: cr => {
+        ready: (cr) => {
           cr.aspect_ratio_x = 27;
           cr.aspect_ratio_y = 8;
-        }
+        },
       },
       buttons: {
-        reorder: false
+        reorder: false,
       },
       onSuccess: function(file, ret) {
         //self.fv[0].revalidateField('has_images');
@@ -263,7 +263,7 @@ new IOService(
           self.fv[0].validate();
           //aa
         }
-      }
+      },
     });
 
     //need to transform wizardActions in a method of Class
@@ -300,12 +300,12 @@ new IOService(
             appVersion: $("#admin-fb-version").val(),
             page: $("#admin-fb-page").val(),
             locale: $("#admin-fb-locale").val(),
-            longToken: $("#admin-fb-longToken").val()
-          }
+            longToken: $("#admin-fb-longToken").val(),
+          },
         },
         colors: {
-          mainColor: $("#admin-mainColor").minicolors("value")
-        }
+          mainColor: $("#admin-mainColor").minicolors("value"),
+        },
       };
 
       $("[name='admin-__configuration']").val(JSON.stringify(conf_obj));
@@ -325,13 +325,13 @@ new IOService(
         onClose: function() {
           self.unload(self);
           location.reload();
-        }
+        },
       });
     };
 
     self.callbacks.create.onSuccess = () => {};
 
-    self.callbacks.unload = self => {
+    self.callbacks.unload = (self) => {
       $(
         "#admin-cpf_cnpj, #admin-name, #admin-systemName, #admin-phone, #admin-mobile, #admin-email, #admin-pathStorage, #admin-address, #admin-address2, #admin-city, #admin-state"
       ).val("");
@@ -358,19 +358,13 @@ function view(self) {
     onSuccess: function(data) {
       const _conf = data;
 
-      $("#admin-cpf_cnpj").val(_conf.cpf_cnpj);
-
-      if ($("#admin-cpf_cnpj").cleanVal().length == 11) {
-        self.fv[0]
-          .disableValidator("admin-cpf_cnpj", "vat")
-          .enableValidator("admin-cpf_cnpj", "id")
-          .revalidateField("admin-cpf_cnpj");
-      } else {
-        self.fv[0]
-          .disableValidator("admin-cpf_cnpj", "id")
-          .enableValidator("admin-cpf_cnpj", "vat")
-          .revalidateField("admin-cpf_cnpj");
-      }
+      $("#admin-cpf_cnpj")
+        .val(
+          _conf.cpf_cnpj.length == 11 ? "000.000.000-00" : "00.000.000/0000-00"
+        )
+        .trigger("input")
+        .attr("readonly", true)
+        .val($("#admin-cpf_cnpj").masked(_conf.cpf_cnpj));
 
       $("#admin-name").val(_conf.name);
       $("#admin-systemName").val(_conf.systemName);
@@ -393,7 +387,7 @@ function view(self) {
             $("#admin-mainColor").minicolors("value", data.colors.mainColor);
       } catch (err) {}
     }, //sasas
-    onError: function(self) {}
+    onError: function(self) {},
   };
 }
 
