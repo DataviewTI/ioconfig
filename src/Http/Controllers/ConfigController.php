@@ -45,10 +45,10 @@ class ConfigController extends IOController{
     $obj = new Config($request->all());
     if($request->sizes!= null){
       $obj->setAppend("sizes",$request->sizes);
-      //$obj->setAppend("has_images",$request->has_images);
+      //$obj->setAppend("hasImages",$request->hasImages);
       $obj->save();
     }
-    //if($request->sizes!= null && $request->has_images>0){
+    //if($request->sizes!= null && $request->hasImages>0){
       $obj->group->manageImages(json_decode($request->__dz_images),json_decode($request->sizes));
       $obj->save();
     //}

@@ -84,17 +84,17 @@
 <script src="{{ asset('io/services/io-config-babel.min.js') }}"></script>
 <script src="{{ asset('io/services/io-config-mix.min.js') }}"></script>
 
-@if($user_type == 'odin'))
+@if($user_type == 'odin')
   <script src="{{ asset('io/services/io-odin-config.min.js') }}"></script>
   <script src="{{ asset('io/services/io-user-config.min.js') }}"></script>
 @endif
 
-@if($user_type == 'admin'))
+@if($user_type == 'admin')
   <script src="{{ asset('io/services/io-admin-config.min.js') }}"></script>
   <script src="{{ asset('io/services/io-user-config.min.js') }}"></script>
 @endif
 
-@if($user_type == 'user'))
+@if($user_type == 'user')
   <script src="{{ asset('io/services/io-user-config.min.js') }}"></script>
 @endif
 @stop

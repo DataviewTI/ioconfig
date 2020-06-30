@@ -20,7 +20,7 @@ class ConfigSeeder extends Seeder
 
 
       if(!Service::where('service',$serv)->exists()){
-        Service::insert([
+        $s = Service::create([
             'service' => $serv,
             'alias' =>Str::slug($serv),
             'trans' => 'Configurações',
@@ -53,6 +53,7 @@ class ConfigSeeder extends Seeder
 
         $_conf = new Config([
           'name' => "default",
+          "service_id" => $s->id,
           'description' => "Odin Configuration - valid for all base system",
           'configuration' => json_encode(
             [

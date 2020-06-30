@@ -192,7 +192,7 @@ new IOService(
               },
             },
           },
-          has_images: {
+          hasImages: {
             validators: {
               callback: {
                 message: "Insira a logo da empresa!",
@@ -201,7 +201,8 @@ new IOService(
                     toastr["error"]("Insira a logo da empresa!");
                     return false;
                   }
-                  $("#has_images").val(true);
+                  console.log("input", input);
+                  $("#admin-hasImages").val(true);
                   return true;
                 },
               },
@@ -230,13 +231,12 @@ new IOService(
     self.fv = [fv1];
 
     //Dropzone initialization
-    Dropzone.autoDiscover = false;
+    // Dropzone.autoDiscover = false;
     self.dz = new DropZoneLoader({
-      id: "#admin-custom-dropzone",
-      autoProcessQueue: false,
+      el: "#admin-custom-dropzone",
       thumbnailWidth: 270,
       thumbnailHeight: 80,
-      class: "m-auto",
+      class: ["m-auto"],
       maxFiles: 1,
       mainImage: false,
       copy_params: {
@@ -244,16 +244,11 @@ new IOService(
         sizes: {},
       },
       crop: {
-        ready: (cr) => {
-          cr.aspect_ratio_x = 27;
-          cr.aspect_ratio_y = 8;
-        },
+        aspect_ratio_x: 27,
+        aspect_ratio_y: 8,
       },
       buttons: {
         reorder: false,
-      },
-      onSuccess: function(file, ret) {
-        //self.fv[0].revalidateField('has_images');
       },
       onPreviewLoad: function(_t) {
         if (self.toView !== null) {
@@ -261,7 +256,6 @@ new IOService(
           self.dz.removeAllFiles(true);
           self.dz.reloadImages(self.config.default);
           self.fv[0].validate();
-          //aa
         }
       },
     });
@@ -382,7 +376,7 @@ function view(self) {
       $("#admin-fb-longToken").val(_conf.socialMedia.facebook.longToken);
 
       try {
-        if (self.config.user.configuration.colors.mainColor == undefined)
+        if (self.config.user.colors.mainColor == undefined)
           if (data.colors.mainColor !== undefined)
             $("#admin-mainColor").minicolors("value", data.colors.mainColor);
       } catch (err) {}

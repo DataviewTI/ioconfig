@@ -4,6 +4,7 @@ namespace Dataview\IOConfig;
 use Dataview\IntranetOne\IOModel;
 use Dataview\IntranetOne\File as ProjectFile;
 use Dataview\IntranetOne\Group;
+use Dataview\IntranetOne\Service;
 use Illuminate\Support\Facades\Storage;
 
 class Config extends IOModel
@@ -37,6 +38,7 @@ class Config extends IOModel
     static::created(function (Config $obj) {
         if($obj->getAppend("group") !== false){
           $group = new Group([
+            'service_id' => Service::where('alias','config')->value('id'),
             'group' => $obj->getAppend("group"),
             'sizes' => $obj->getAppend("sizes")
           ]);

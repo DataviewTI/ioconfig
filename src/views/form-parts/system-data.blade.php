@@ -57,7 +57,7 @@
   </div>
   <div class="col-sm-3 col-xs-12">
     @include("IntranetOne::io.forms.form-images",[
-        "id" => $__user."custom-dropzone"
+      "id" => $__user."custom-dropzone",
     ])
   </div>  
 </div>
